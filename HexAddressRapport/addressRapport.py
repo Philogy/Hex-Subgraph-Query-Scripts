@@ -317,8 +317,9 @@ class Rapport:
                 stake_interest += payout
 
         if int(stake['startDay']) <= 352 and int(stake['endDay']) > 352:
-            stake_interest += self.calc_big_pay_day(stake)
-            stake_interest += self.calc_adopt_bonus(stake_interest)
+            big_pay_day_slice = self.calc_big_pay_day(stake) 
+            stake_interest += big_pay_day_slice
+            stake_interest += self.calc_adopt_bonus(big_pay_day_slice)
         stake_interest = self.hearts_to_hex(stake_interest)
         return Decimal(stake_interest)
 
